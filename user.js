@@ -22,6 +22,18 @@ const buildOptKey=o=>{
     return k;
 };
 
+const addHint=q=>{
+    if(q.dataset.hinted) return;
+    const t=q.innerText.trim();
+    if(t==="这段声音是来自谁的？请找出与题目语音同角色的选项"){
+        const hint=document.createElement('div');
+        hint.style.color='lime';
+        hint.innerText='提示:选择 这里有什么值得你好奇的?不会是我吧';
+        q.insertAdjacentElement('afterend',hint);
+        q.dataset.hinted="1";
+    }
+};
+
 const highlight=()=>{
     const q=document.querySelector('.question-text');
     if(!q)return;
