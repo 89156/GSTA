@@ -1,7 +1,17 @@
+// ==UserScript==
+// @name         天才们的邀约 正确答案高亮助手
+// @namespace    https://starrailawards.com/
+// @version      2
+// @description  适用于⌈天才们的邀约⌋小游戏，加载时立即高亮已有题目
+// @match        *://geniuses.starrailawards.com/*
+// @grant        none
+// @icon         https://static.appoint.icu/QA/img/geniuses.ico
+// ==/UserScript==
+
 (function(){
 'use strict';
 let DB={};
-fetch("https://github.com/89156/userjs/raw/refs/heads/main/quiz_db.json")
+fetch("https://gh-proxy.org/https://raw.githubusercontent.com/89156/userjs/refs/heads/main/quiz_db.json")
 .then(r=>r.json()).then(j=>{
     DB=j;
     const tryHighlight=()=>{ 
