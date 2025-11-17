@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 let DB={};
-fetch("https://gh-proxy.org/https://raw.githubusercontent.com/89156/userjs/refs/heads/main/quiz_db.json")
+fetch("https://gh-proxy.org/https://github.com/89156/userjs/raw/refs/heads/main/user.js")
 .then(r=>r.json()).then(j=>{
     DB=j;
     const tryHighlight=()=>{ 
@@ -17,18 +17,6 @@ const buildOptKey=o=>{
     if(img) k+=`|img:${img.src}`;
     if(aud) k+=`|audio:${aud.src}`;
     return k;
-};
-
-const addHint=q=>{
-    if(q.dataset.hinted) return;
-    const t=q.innerText.trim();
-    if(t==="这段声音是来自谁的？请找出与题目语音同角色的选项"){
-        const hint=document.createElement('div');
-        hint.style.color='lime';
-        hint.innerText='提示:选择 这里有什么值得你好奇的?不会是我吧';
-        q.insertAdjacentElement('afterend',hint);
-        q.dataset.hinted="1";
-    }
 };
 
 const highlight=()=>{
