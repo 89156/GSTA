@@ -1,0 +1,52 @@
+'use strict';
+
+let DB = {};
+fetch("https://gh-proxy.org/https://raw.githubusercontent.com/89156/userjs/refs/heads/main/quiz_db.json")
+  .then(r => r.json())
+  .then(j => { DB = j; });
+
+const buildOptKey = o => {
+    let k = o.innerText.trim();
+    const img = o.querySelector('img'), aud = o.querySelector('audio');
+    if (img) k += `|img:${img.src}`;
+    if (aud) k += `|audio:${aud.src}`;
+    return k;
+};
+
+const addHint = q => {
+    if (q.dataset.hinted) return;
+    const t = q.innerText.trim();
+    if (t === "这段声音是来自谁的？请找出与题目语音同角色的选项") {
+        const hint = document.createElement('div');
+        hint.style.color = 'lime';
+        hint.innerText = '提示:选择 这里有什么值得你好奇的?不会是我吧';
+        q.insertAdjacentElement('afterend', hint);
+        q.dataset.hinted = "1";
+    }
+};
+
+const highlight = () => {
+    const q = document.querySelector('.question-text');
+    if (!q) return;
+    addHint(q);
+    let key = q.innerText.trim();
+    if (key.includes('请找出与题目语音同角色的选项')) return;
+    const box = q.closest('.question-container');
+    if (box) {
+        const s = box.querySelector('audio source'), i = box.querySelector('img');
+        if (s) key += `|audio:${s.src}`;
+        if (i) key += `|img:${i.src}`;
+    }
+    const ops = [...document.querySelectorAll('.option')];
+    ops.forEach(o => { o.style.border = ''; });
+    const ans = DB[key];
+    if (ans) {
+        const hit = ops.find(o => buildOptKey(o) === ans);
+        if (hit) hit.style.border = '5px solid lime';
+    }
+};
+
+new MutationObserver(highlight).observe(document.body, { childList: true, subtree: true });
+highlight();
+
+console.log("已激活");
