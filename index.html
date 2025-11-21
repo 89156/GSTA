@@ -27,21 +27,22 @@
     <h1>⌈天才们的邀约⌋ 辅助答题工具</h1>
 
     <div class="card">
-      <strong>如何使用脚本</strong>
-      <div class="hint">方法一:代理原网站并注入脚本。 方法二：使用篡改猴(Tampermonkey) 插件。 方法三：打开网站后在控制台粘贴指令（无需插件）。</div>
+      <strong>各方案区别</strong>
+      <div class="hint">方案一:代理原网站并注入脚本。<br> 方案二:使用篡改猴(Tampermonkey) 插件。<br> 方案三:使用控制台指令。</div>
     </div>
 
     <div class="card">
-      <strong class="big">方法一：</strong>
+      <strong class="big">方案一(推荐)：</strong>
       <pre class="codebox mono" id="link1">a-1dv.pages.dev</pre>
       <div style="display:flex;gap:10px;align-items:center;margin-top:6px;">
         <a href="https://a-1dv.pages.dev" target="_blank" class="copybtn">打开链接</a>
+        <a href="https://boce.aliyun.com/detect/http/ef9f4858e1434ec9b2ec5028ea23882d" target="_blank" class="copybtn">网络拨测</a>
       </div>
       <div class="hint">最方便的方法，但部分地区可能无法访问</div>
     </div>
 
     <div class="card">
-      <strong class="big">方法二：</strong>
+      <strong class="big">方案二：</strong>
       <pre class="codebox mono" id="link2">https://gh-proxy.org/https://github.com/89156/GSTA/raw/refs/heads/main/user.js</pre>
       <div style="display:flex;gap:10px;align-items:center;margin-top:6px;">
         <button class="copybtn" data-copy="https://gh-proxy.org/https://github.com/89156/GSTA/raw/refs/heads/main/user.js">复制链接</button>
@@ -51,7 +52,7 @@
     </div>
     
     <div class="card">
-      <strong class="big">方法三：</strong>
+      <strong class="big">方案三：</strong>
       <pre class="codebox mono" id="cmd">fetch("https://gh-proxy.org/https://raw.githubusercontent.com/89156/userjs/refs/heads/main/quiz_highlight.js").then(r=>r.text()).then(eval)</pre>
       <div style="display:flex;gap:10px;align-items:center;margin-top:6px;">
         <button class="copybtn" id="copy-run">复制指令</button>
